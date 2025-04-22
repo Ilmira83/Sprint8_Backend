@@ -8,12 +8,12 @@ export const routes: Routes = [
     component: NavbarComponent, // this is the component with the <router-outlet> in the template
     children: [
       {
-        path: 'app-home', 
+        path: '',
         pathMatch: 'full',
         loadComponent: async () => {
           const m = await import('./components/home/home.component');
-          return m.HomeComponent
-        }, 
+          return m.HomeComponent;
+        },
       },
       {
         path: 'app-dashboard',
@@ -23,6 +23,14 @@ export const routes: Routes = [
           return m.DashboardComponent
         },
       /*  canActivate: [LoginGuard],   */
+      },
+      {
+        path: 'app-home', 
+        pathMatch: 'full',
+        loadComponent: async () => {
+          const m = await import('./components/home/home.component');
+          return m.HomeComponent
+        }, 
       },
       {
         path: 'app-calendar',
@@ -36,6 +44,13 @@ export const routes: Routes = [
         loadComponent: async () => {
           const m = await import('./components/map/map.component');
           return m.MapComponent
+        } 
+      },
+      {
+        path: 'app-charts',
+        loadComponent: async () => {
+          const m = await import('./components/charts/charts.component');
+          return m.ChartsComponent
         } 
       },
     ],
