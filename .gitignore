@@ -7,7 +7,7 @@
 /bazel-out
 
 # Node
-/node_modules
+**/node_modules/
 npm-debug.log
 yarn-error.log
 
@@ -40,3 +40,9 @@ testem.log
 # System files
 .DS_Store
 Thumbs.db
+
+# Ignore .env in backend
+/backend/.env
+
+# Ignore environments.ts in frontend
+/frontend/src/app/environments/environments.ts
