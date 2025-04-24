@@ -1,13 +1,15 @@
 <div class="container my-2">
-  <h3>Expense Table</h3>
+  <div class="title">
+    <h3>Bookings list</h3>
+    <button type="button" class="btn btn-primary">Add booking</button>
+  </div>
   <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">Date</th>
-        <th scope="col">Category</th>
-        <th scope="col">Description</th>
-        <th scope="col">Amount</th>
-        <th scope="col">Recurring</th>
+        <th scope="col">Name</th>
+        <th scope="col">Type</th>
+        <th scope="col">Days</th>
+        <th scope="col">Price</th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +19,11 @@
         <td></td>
         <td></td>
         <td></td>
+        <td>
+          <button type="button" class="btn btn-info btn-sm">Edit</button>
+          <button type="button" class="btn btn-secondary btn-sm ms-2">Delete</button>
+        </td>
+        
       </tr>
     </tbody>
   </table>
