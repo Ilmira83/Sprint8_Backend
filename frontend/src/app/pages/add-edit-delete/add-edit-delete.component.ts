@@ -42,11 +42,11 @@ export class AddEditDeleteComponent {
     if(this.id != 0) {
       this.operation = 'Edit '
     }
-    this.editBooking(this.id)
+    this.getBooking(this.id)
   
   }
 
-  editBooking(id:number){
+  getBooking(id:number){
     this.bookingService.getBooking(id).subscribe(response =>
       this.bookingForm.setValue({
       name:response.name,
