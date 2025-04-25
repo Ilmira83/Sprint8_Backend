@@ -1,7 +1,11 @@
 <div class="container my-2">
   <div class="title">
     <h3>Bookings list</h3>
-    <button type="button" class="btn btn-primary">Add booking</button>
+    <button type="button" class="btn btn-primary"
+    routerLink="/add"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+    >Add booking</button>
   </div>
   <table class="table table-hover">
     <thead>
@@ -10,21 +14,33 @@
         <th scope="col">Type</th>
         <th scope="col">Days</th>
         <th scope="col">Price</th>
+        <th scope="col">ID</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
-      <tr class="table-primary">
-        <th scope="row"></th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td class="modify_buttons">
-          <button type="button" class="btn btn-info btn-sm">Edit</button>
-          <button type="button" class="btn btn-secondary btn-sm ms-2">Delete</button>
-        </td>
-        
-      </tr>
+      @for(booking of bookingsService.bookingList(); track booking){
+        <tr class="table-primary">
+          <th scope="row">{{booking.name}}</th>
+          <td>{{booking.type}}</td>
+          <td>{{booking.days}}</td>
+          <td>{{booking.price}}</td>
+          <td>{{booking.id}}</td>
+          <td class="modify_buttons">
+            <button type="button" class="btn btn-info btn-sm"
+            routerLink="/edit/{{booking.id}}"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Edit</button>
+            <button type="button" class="btn btn-secondary btn-sm ms-2"
+            routerLink="/delete/{{booking.id}}"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            >Delete</button>
+          </td>
+        </tr>
+      }
+      
     </tbody>
   </table>
 </div>

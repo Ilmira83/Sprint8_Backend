@@ -22,7 +22,6 @@ export const routes: Routes = [
           const m = await import('./components/dashboard/dashboard.component');
           return m.DashboardComponent
         },
-      /*  canActivate: [LoginGuard],   */
       },
       {
         path: 'app-home', 
@@ -51,6 +50,27 @@ export const routes: Routes = [
         loadComponent: async () => {
           const m = await import('./components/charts/charts.component');
           return m.ChartsComponent
+        } 
+      },
+      {
+        path: 'add',
+        loadComponent: async () => {
+          const m = await import('./pages/add-edit-delete/add-edit-delete.component');
+          return m.AddEditDeleteComponent
+        } 
+      },
+      {
+        path: 'edit/:id',
+        loadComponent: async () => {
+          const m = await import('./pages/add-edit-delete/add-edit-delete.component');
+          return m.AddEditDeleteComponent
+        } 
+      },
+      {
+        path: 'delete/:id',
+        loadComponent: async () => {
+          const m = await import('./pages/add-edit-delete/add-edit-delete.component');
+          return m.AddEditDeleteComponent
         } 
       },
     ],
