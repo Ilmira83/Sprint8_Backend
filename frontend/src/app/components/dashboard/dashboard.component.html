@@ -19,23 +19,22 @@
       </tr>
     </thead>
     <tbody>
-      @for(booking of bookingsService.bookingList(); track booking){
+      @for(booking of bookingsService.bookingList(); track booking.id){
         <tr class="table-primary">
           <th scope="row">{{booking.name}}</th>
           <td>{{booking.type}}</td>
           <td>{{booking.days}}</td>
-          <td>{{booking.price}}</td>
+          <td>{{booking.price | currency}}</td>
           <td>{{booking.id}}</td>
           <td class="modify_buttons">
             <button type="button" class="btn btn-info btn-sm"
+            (click)="editBooking(booking.id!)"
             routerLink="/edit/{{booking.id}}"
             routerLinkActive="active"
             ariaCurrentWhenActive="page"
             >Edit</button>
             <button type="button" class="btn btn-secondary btn-sm ms-2"
-            routerLink="/delete/{{booking.id}}"
-            routerLinkActive="active"
-            ariaCurrentWhenActive="page"
+            (click)="bookingsService.deleteBooking(booking.id!)"
             >Delete</button>
           </td>
         </tr>
