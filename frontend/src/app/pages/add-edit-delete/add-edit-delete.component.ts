@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink} from '@angular/router';
+import { ActivatedRoute, RouterLink} from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookingsService } from '../../services/bookings.service';
 import { Booking } from '../../models/booking';
@@ -13,6 +13,10 @@ import { Booking } from '../../models/booking';
 export class AddEditDeleteComponent {
   bookingForm:FormGroup;
   bookingService = inject(BookingsService);
+  booking = this.bookingService.booking;
+  aRouter = inject(ActivatedRoute);
+  operation:string = 'Add '
+  id:number;
 
   constructor(private fb: FormBuilder){
     this.bookingForm =  this.fb.group({
@@ -21,6 +25,7 @@ export class AddEditDeleteComponent {
       days: new FormControl(null),
       price: new FormControl(null)
     });
+    this.id = Number(this.aRouter.snapshot.paramMap.get('id'));
   }
 
   addBooking() {
@@ -33,10 +38,38 @@ export class AddEditDeleteComponent {
     this.bookingService.addBooking(booking);
   }
 
-  editBooking(id:number){
-    this.bookingService.getBooking(id);
-    console.log(this.bookingService.booking())
+  ngOnInit():void {
+    if(this.id != 0) {
+      this.operation = 'Edit '
+    }
+    this.editBooking(this.id)
+  
   }
+
+  editBooking(id:number){
+    this.bookingService.getBooking(id).subscribe(response =>
+      this.bookingForm.setValue({
+      name:response.name,
+      type:response.type,
+      days:response.days,
+      price:response.price
+    })
+    );
+  }
+  updateBooking(id:number, booking:Booking){
+    this.booking.set({
+      name: this.bookingForm.value.name,
+      type: this.bookingForm.value.type,
+      days: this.bookingForm.value.days,
+      price: this.bookingForm.value.price
+    })
+    this.bookingService.updateBooking(this.id, this.booking()!);
+    console.log(id)
+    console.log(this.booking())
+
+  }
+
+
 
 
 

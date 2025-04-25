@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-lg-4 offset-lg-4 mt-3">
     <div class="card border-primary mb-3" style="max-width: 25rem;">
-      <div class="card-header text-center">Add booking</div>
+      <div class="card-header text-center">{{operation}} booking</div>
       <div class="card-body">
         <form [formGroup]="bookingForm">
           <div class="form-floating mb-3">
@@ -22,7 +22,10 @@
           </div>
         </form>
         <div class="form-buttons d-flex justify-content-between px-3">
-          <button type="button" class="btn btn-primary" (click)="addBooking()">Accept</button>
+          <button type="button" class="btn btn-primary" 
+              (click)="id === 0 ? addBooking() : updateBooking(id, booking()!)">
+              Accept
+          </button>          
           <button type="button" class="btn btn-secondary" 
           routerLink="/app-dashboard">Cancel</button>
         </div>

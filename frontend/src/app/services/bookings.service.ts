@@ -37,8 +37,7 @@ export class BookingsService {
     })
   }
   getBooking(id:number){
-    this.http.get<Booking>(`${this.myAppUrl}${this.myApiUrl}${id}`).subscribe(response => 
-      this.booking.set(response))
+    return this.http.get<Booking>(`${this.myAppUrl}${this.myApiUrl}${id}`)
   }
   updateBooking(id:number, booking:Booking){
     this.http.put(`${this.myAppUrl}${this.myApiUrl}${id}`, booking).subscribe(()=> {this.getListBookings();

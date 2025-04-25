@@ -18,9 +18,4 @@ export class DashboardComponent {
     this.bookingsService.getListBookings();
   }
 
-  editBooking(id:number){
-    this.bookingsService.getBooking(id);
-    console.log(this.bookingsService.booking)
-  }
-
 }
