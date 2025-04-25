@@ -1,4 +1,5 @@
 export const environment  = {
   production: false,
-  endpoint: 'http://localhost:3000/api'
+  endpoint: 'YOUR_LOCALHOST_URL',
+  bookings: 'YOUR_API_URL',
 }
