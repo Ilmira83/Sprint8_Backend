@@ -32,9 +32,8 @@ class Server {
   }
 
   midlewares() {
-    this.app.use(cors({
-      origin: ['http://localhost:4200'],
-      }));
+    //enable cors
+    this.app.use(cors());
     //parse the body
     this.app.use(express.json());
   }
