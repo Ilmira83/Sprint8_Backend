@@ -1,4 +1,5 @@
 import express, {Request, Response} from 'express';
+import cors from 'cors';
 import routesBooking from '../routes/booking_routes';
 import db from '../db/connection';
 
@@ -31,12 +32,14 @@ class Server {
   }
 
   midlewares() {
+    this.app.use(cors({
+      origin: ['http://localhost:4200'],
+      }));
     //parse the body
     this.app.use(express.json());
   }
 
   async dbConnect() {
-
     try {
       await db.authenticate();
       console.log('DB connected')
