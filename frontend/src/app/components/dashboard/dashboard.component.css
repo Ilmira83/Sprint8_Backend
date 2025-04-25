@@ -2,3 +2,6 @@
   display: flex;
   justify-content: space-between;
 }
+.modify_buttons{
+  text-align: center;
+}
