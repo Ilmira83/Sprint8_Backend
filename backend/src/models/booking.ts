@@ -9,14 +9,12 @@ const Booking = db.define('Booking', {
     type: DataTypes.STRING
   },
   days:{
-    type: DataTypes.NUMBER
+    type: DataTypes.INTEGER
   },
   price:{
     type: DataTypes.DOUBLE
   }
 }, {
-  createdAt: false,
-  updatedAt: false
 })
 
 export default Booking;
