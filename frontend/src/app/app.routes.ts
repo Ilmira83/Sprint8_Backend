@@ -75,4 +75,11 @@ export const routes: Routes = [
       },
     ],
   }, 
+  {
+    path: 'modal',
+    loadComponent: async () => {
+      const m = await import('./components/calendar/modal/modal.component');
+      return m.ModalComponent
+    } 
+  },
 ];
