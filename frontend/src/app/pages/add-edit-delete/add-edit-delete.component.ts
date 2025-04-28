@@ -23,7 +23,8 @@ export class AddEditDeleteComponent {
       name: new FormControl(''),
       type: new FormControl(''),
       days: new FormControl(null),
-      price: new FormControl(null)
+      price: new FormControl(null),
+      startDate: new FormControl('')
     });
     this.id = Number(this.aRouter.snapshot.paramMap.get('id'));
   }
@@ -34,6 +35,7 @@ export class AddEditDeleteComponent {
       type: this.bookingForm.value.type,
       days: this.bookingForm.value.days,
       price: this.bookingForm.value.price,
+      startDate: this.bookingForm.value.startDate,
     }
     this.bookingService.addBooking(booking);
   }
@@ -52,7 +54,8 @@ export class AddEditDeleteComponent {
       name:response.name,
       type:response.type,
       days:response.days,
-      price:response.price
+      price:response.price,
+      startDate:response.startDate
     })
     );
   }
@@ -62,6 +65,7 @@ export class AddEditDeleteComponent {
       type: this.bookingForm.value.type,
       days: this.bookingForm.value.days,
       price: this.bookingForm.value.price,
+      startDate: this.bookingForm.value.startDate
     })
     this.bookingService.updateBooking(this.id, this.booking()!);
   }
