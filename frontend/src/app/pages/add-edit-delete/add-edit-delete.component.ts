@@ -33,7 +33,7 @@ export class AddEditDeleteComponent {
       name: this.bookingForm.value.name,
       type: this.bookingForm.value.type,
       days: this.bookingForm.value.days,
-      price: this.bookingForm.value.price
+      price: this.bookingForm.value.price,
     }
     this.bookingService.addBooking(booking);
   }
@@ -56,17 +56,14 @@ export class AddEditDeleteComponent {
     })
     );
   }
-  updateBooking(id:number, booking:Booking){
+  updateBooking(){
     this.booking.set({
       name: this.bookingForm.value.name,
       type: this.bookingForm.value.type,
       days: this.bookingForm.value.days,
-      price: this.bookingForm.value.price
+      price: this.bookingForm.value.price,
     })
     this.bookingService.updateBooking(this.id, this.booking()!);
-    console.log(id)
-    console.log(this.booking())
-
   }
 
 

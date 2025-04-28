@@ -3,5 +3,7 @@ export interface Booking {
   name: string,
   type: string,
   days: number,
-  price: number
+  price: number,
+  createdAt?: string,
+  updatedAt?: string
 }
