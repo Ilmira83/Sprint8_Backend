@@ -4,6 +4,7 @@ export interface Booking {
   type: string,
   days: number,
   price: number,
+  startDate: string,
   createdAt?: string,
   updatedAt?: string
 }
