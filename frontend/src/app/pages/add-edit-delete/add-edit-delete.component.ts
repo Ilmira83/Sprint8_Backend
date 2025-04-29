@@ -24,7 +24,7 @@ export class AddEditDeleteComponent {
       type: new FormControl(''),
       days: new FormControl(null),
       price: new FormControl(null),
-      startDate: new FormControl('')
+      startDate: new FormControl(null)
     });
     this.id = Number(this.aRouter.snapshot.paramMap.get('id'));
   }
@@ -42,9 +42,10 @@ export class AddEditDeleteComponent {
 
   ngOnInit():void {
     if(this.id != 0) {
-      this.operation = 'Edit '
+      this.operation = 'Edit ';
+      this.getBooking(this.id)
     }
-    this.getBooking(this.id)
+    
   
   }
 
@@ -56,7 +57,7 @@ export class AddEditDeleteComponent {
       days:response.days,
       price:response.price,
       startDate:response.startDate
-    })
+     })
     );
   }
   updateBooking(){

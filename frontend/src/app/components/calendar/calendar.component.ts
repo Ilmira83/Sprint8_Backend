@@ -1,5 +1,6 @@
 import { Component, effect, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router} from '@angular/router';
 import { FullCalendarModule } from '@fullcalendar/angular'
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -24,6 +25,7 @@ export class CalendarComponent {
   bookingsService = inject(BookingsService);
   bookingList = this.bookingsService.bookingList;
   eventsList: Event[] = [];
+  router = inject(Router);
 
   ngOnInit(): void {
     this.bookingsService.getListBookings();
@@ -35,9 +37,8 @@ export class CalendarComponent {
       if(bookings){
         this.eventsList = bookings.map(booking => ({
           title: booking.name,
-          date: booking.createdAt!,
-        }));
-        this.calendarOptions.events = this.eventsList;
+          date: booking.startDate,   
+       }));
       }
     })
   }
@@ -51,11 +52,17 @@ export class CalendarComponent {
       info.el.style.cursor = 'pointer';
     },
     contentHeight: 'auto',
-
+    eventClick: function(info) {
+/*       this.router.navigate(['/edit', info.event.id]) */
+  
+      // change the border color just for fun
+      info.el.style.borderColor = 'red';
+    }
   };
+  
 
   handleDateClick(arg: DateClickArg) {
-    /* alert('date click! ' + arg.dateStr) */
+    this.router.navigate(['/modal'])
   }
 
 }
