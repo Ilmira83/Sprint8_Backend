@@ -5,7 +5,7 @@ import { FullCalendarModule } from '@fullcalendar/angular'
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
-import { BookingsService } from '../../services/bookings.service';
+import { BookingsService } from '../../services/bookingsAPI.service';
 
 
 interface Event {
@@ -27,42 +27,34 @@ export class CalendarComponent {
   eventsList: Event[] = [];
   router = inject(Router);
 
-  ngOnInit(): void {
-    this.bookingsService.getListBookings();
-    console.log(this.bookingList())
-  }
   constructor(){
-    effect(()=>{
-      const bookings = this.bookingList();
-      if(bookings){
-        this.eventsList = bookings.map(booking => ({
-          title: booking.name,
-          date: booking.startDate,   
-       }));
-      }
-    })
+    effect(()=>
+      this.eventsList = this.bookingList.value()!.map(booking => ({
+        title: booking.name,
+        date: booking.startDate,   
+     }))
+    )
   }
  
   calendarOptions: CalendarOptions = {
     initialView: 'dayGridMonth',
     plugins: [dayGridPlugin, interactionPlugin],
     dateClick: (arg) => this.handleDateClick(arg),
+    editable: true,
     events: [],
     eventDidMount: (info) => {
       info.el.style.cursor = 'pointer';
     },
     contentHeight: 'auto',
-    eventClick: function(info) {
-/*       this.router.navigate(['/edit', info.event.id]) */
+    eventClick: (info) =>{
+      this.router.navigate(['/modal'])
+    },
   
-      // change the border color just for fun
-      info.el.style.borderColor = 'red';
-    }
   };
   
-
   handleDateClick(arg: DateClickArg) {
-    this.router.navigate(['/modal'])
+    const date = arg.date.toLocaleDateString('sv-SE').split('T')[0];
+    this.router.navigate(['/modal'], {queryParams: { startDate: date }});
   }
 
 }

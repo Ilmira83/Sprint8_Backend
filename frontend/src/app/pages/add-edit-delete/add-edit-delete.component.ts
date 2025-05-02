@@ -1,7 +1,7 @@
 import { Component, inject, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink} from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BookingsService } from '../../services/bookings.service';
+import { BookingsService } from '../../services/bookingsAPI.service';
 import { Booking } from '../../models/booking';
 import { BookingFormComponent } from "../../shared/booking-form/booking-form.component";
 
@@ -14,7 +14,7 @@ import { BookingFormComponent } from "../../shared/booking-form/booking-form.com
 export class AddEditDeleteComponent {
   @ViewChild(BookingFormComponent) bookingForm!: BookingFormComponent;
   bookingService = inject(BookingsService);
-  booking = this.bookingService.booking;
+  bookingList = this.bookingService.bookingList;
   aRouter = inject(ActivatedRoute);
   operation:string = 'Add '
   id:number;
@@ -26,15 +26,20 @@ export class AddEditDeleteComponent {
 
   addBooking() {
     const bookingData = this.bookingForm.onSubmit();
+    if(!bookingData) return;
     const booking: Booking = {
       name: bookingData.name,
       type: bookingData.type,
       days: bookingData.days,
       price: bookingData.price,
       startDate: bookingData.startDate,
-    }
-    this.bookingService.addBooking(booking);
-    this.router.navigate(['/app-dashboard'])    
+    };
+    this.bookingService.addBooking(booking).subscribe({
+      next: () => {
+        this.bookingList.reload();  
+        this.router.navigate(['/app-dashboard']);
+      }
+    });
   }
 
   ngOnInit():void {
@@ -42,12 +47,10 @@ export class AddEditDeleteComponent {
       this.operation = 'Edit ';
       this.getBooking(this.id)
     }
-    
-  
   }
 
   getBooking(id:number){
-   /*  this.bookingService.getBooking(id).subscribe(response =>
+    this.bookingService.getBooking(id).subscribe(response =>
       this.bookingForm.setValue({
       name:response.name,
       type:response.type,
@@ -55,17 +58,23 @@ export class AddEditDeleteComponent {
       price:response.price,
       startDate:response.startDate
      })
-    ); */
+    );
   }
   updateBooking(){
-   /*  this.booking.set({
-      name: this.bookingForm.value.name,
-      type: this.bookingForm.value.type,
-      days: this.bookingForm.value.days,
-      price: this.bookingForm.value.price,
-      startDate: this.bookingForm.value.startDate
-    })
-    this.bookingService.updateBooking(this.id, this.booking()!); */
+    const bookingData = this.bookingForm.onSubmit();
+    const booking: Booking = {
+      name: bookingData.name,
+      type: bookingData.type,
+      days: bookingData.days,
+      price: bookingData.price,
+      startDate: bookingData.startDate,
+    }
+    this.bookingService.updateBooking(this.id, booking).subscribe({
+      next: () => {
+        this.bookingList.reload();  
+        this.router.navigate(['/app-dashboard']);
+      }
+    });
   }
 
 

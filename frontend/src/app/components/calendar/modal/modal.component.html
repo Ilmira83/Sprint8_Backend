@@ -2,7 +2,7 @@
   <div class="modal-dialog" role="document">
   <div class="modal-content">
       <div class="modal-header">
-      <!--   <h5 class="modal-title">Add booking</h5>  -->
+        <h5 class="modal-title">Add booking</h5> 
         <button type="button" class="btn-close"
         routerLink="/app-calendar"
         routerLinkActive="active"
@@ -10,16 +10,16 @@
         data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
      <div class="modal-body">
-<app-add-edit-delete></app-add-edit-delete>
+        <app-booking-form></app-booking-form>
       </div>
-<!--       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="addBooking()">Accept</button>
         <button type="button"
         routerLink="/app-calendar"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
-        class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div> -->
+        class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
     </div>
     
   </div>
