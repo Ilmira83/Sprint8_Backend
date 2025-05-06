@@ -1,3 +1,27 @@
 <div class="full-calendar px-3 py-3">  
-  <full-calendar [options]="calendarOptions" [events]="eventsList"></full-calendar>
+  <full-calendar [options]="calendarOptions" [events]="eventsList()"></full-calendar>
 </div>
+@if(clickEvent == true){
+  <div class="modal" #eventModal>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">What do you want to do with this booking?</h5>
+           <button type="button" class="btn-close" data-bs-dismiss="modal"
+           data-bs-target="myModal" aria-label="Close" (click)="closeEventModal()"
+          ></button>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-primary" 
+          (click)="editBooking()">Edit</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+          (click)="deleteBooking()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+@if(modalOpen == true) {
+  <modify_booking></modify_booking>
+ }
+<router-outlet></router-outlet>
