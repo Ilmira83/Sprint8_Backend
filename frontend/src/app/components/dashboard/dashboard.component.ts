@@ -1,28 +1,54 @@
-import { Component, computed, effect, inject, Injector, OnInit, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive} from '@angular/router';
+import { Component, computed, effect, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookingsService } from '../../services/bookingsAPI.service';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Modify_bookingComponent } from '../../shared/modal/modify_booking.component';
+import { BookingFormComponent } from '../../shared/booking-form/booking-form.component';
 import { Booking } from '../../models/booking';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [RouterLink, RouterLinkActive, CommonModule],
+  imports: [CommonModule, Modify_bookingComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
-
-  private injector = inject(Injector);
+  
+ @ViewChild(BookingFormComponent) bookingForm!: BookingFormComponent;
   bookingsService = inject(BookingsService);
+  @ViewChild(Modify_bookingComponent) myModal!: Modify_bookingComponent;
+  modalOpen:boolean = false;
+  currentID = this.bookingsService.currentID;
+  
+  bookingList = computed(() => this.bookingsService.bookingList.value() ?? [] as Booking[]);
 
-  bookingList = this.bookingsService.bookingList;
+  openModal(){
+    this.modalOpen = true;
+    if(this.myModal){
+      this.myModal.openModal();
+    }
+  }
 
+  getBooking(id:number){
+    this.currentID.set(id);
+    this.bookingsService.getBooking(id).subscribe(response =>
+      this.myModal.bookingForm.setValue({
+      name:response.name,
+      type:response.type,
+      days:response.days,
+      price:response.price,
+      startDate:response.startDate
+     })
+    );
+    this.openModal();
+  }
 
   deleteBooking(id:number){
-   this.bookingsService.deleteBooking(id).subscribe()
-   this.bookingList.reload() // this is the method!!!
+   this.bookingsService.deleteBooking(id).subscribe(() =>
+    this.bookingsService.bookingList.reload()
+   );
+   
   }
+
 
 
 }

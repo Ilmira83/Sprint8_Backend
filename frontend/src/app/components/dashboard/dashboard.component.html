@@ -2,11 +2,9 @@
   <div class="title">
     <h3>Bookings list</h3>
     <button type="button" class="btn btn-primary"
-    routerLink="/add"
-    routerLinkActive="active"
-    ariaCurrentWhenActive="page">Add booking</button>
+    (click)="openModal()">Add booking</button>
   </div>
- <!--  @if(bookingList.value()!.length != 0 ) { -->
+  @if(bookingList().length != 0 ) {
     <table class="table table-hover">
       <thead>
         <tr>
@@ -19,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        @for(booking of bookingList.value(); track booking.id){
+        @for(booking of bookingList(); track booking.id){
           <tr class="table-primary">
             <th scope="row">{{booking.name}}</th>
             <td>{{booking.type}}</td>
@@ -28,9 +26,7 @@
             <td>{{booking.startDate}}</td>
             <td class="modify_buttons">
               <button type="button" class="btn btn-info btn-sm"
-              routerLink="/edit/{{booking.id}}"
-              routerLinkActive="active"
-              ariaCurrentWhenActive="page"
+              (click)="getBooking(booking.id!)"
               >Edit</button>
               <button type="button" class="btn btn-secondary btn-sm ms-2"
               (click)="deleteBooking(booking.id!)"
@@ -41,9 +37,12 @@
         
       </tbody>
     </table>
-<!--   }
+  }
   @else { 
     <h4>No booking to show yet.</h4>
-   } -->
-  
+   }
+   @if(modalOpen == true) {
+    <modify_booking></modify_booking>
+   }
+   
 </div>
