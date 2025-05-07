@@ -13,8 +13,10 @@ const Booking = db.define('Booking', {
   },
   price:{
     type: DataTypes.DOUBLE
-  }
-}, {
+  },
+  startDate:{
+    type: DataTypes.DATEONLY
+  },
 })
 
 export default Booking;
