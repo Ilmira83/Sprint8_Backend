@@ -1,59 +1,80 @@
-# Backend
+# GREENCAMP
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+This project was generated using Angular CLI version 19.2.0. (https://github.com/angular/angular-cli).
 
-## Development server
+This project contains the BackEnd and FrontEnd parts. The fulfillment of BackEnd is based on Node.js + MySQL.
 
-To start a local development server, run:
+In this project, the task of creating a local server was implemented, with subsequent integration into FrontEnd. In the FrontEnd part, all the possibilities of working with the database through the UI were implemented using signals and the latest httpResource requests and methods for processing them.
 
+
+## Features/Technologies:
+
+- Dynamic Angular 19.2.0 routing with lazy loading
+
+- Angular Signals for fine-grained reactive state management
+
+- Reactive forms for CRUD fulfilment
+
+- Calendar with Fullcalendar 6.1.17 
+
+- Intaractive map with Leaflet v.1.9.4. JS library
+
+- Node.js + MySql2(v.3.14.0) + Sequelize(v.6.37.7) + Express(v.5.1.0)
+
+- Bootstrap/Bootswatch 5.3.5 for responding and fine design
+
+## Requirements:
+
+- **Node.js** y **npm** installed in your system. Use link [nodejs.org](https://nodejs.org/).
+- Angular CLI installed globally:
+
+```bash
+npm install -g @angular/cli
+```
+
+### Installation: 
+
+- Clone this github repository:
+
+```bash
+git clone https://github.com/Ilmira83/Sprint8_GreenCamp
+```
+- Go to directory:
+```bash
+cd GreenCamp
+```
+- Install dependencies:
+```bash
+npm install
+```
+- Run the app:
 ```bash
 ng serve
 ```
+### Usage: 
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Open http://localhost:4200 in your browser.
 
-## Code scaffolding
+### Contributions:
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+**For contributions, please follow these steps:**
 
+- Fork the repository.
+
+- Create a new branch:
 ```bash
-ng generate component component-name
+git checkout -b feature-name
 ```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+- Make your changes and commit:
 ```bash
-ng generate --help
+git commit -m "Added new feature"
 ```
+- Push to GitHub and create a Pull Request.
 
-## Building
+### Contact information:
 
-To build the project run:
+Created by: Ilmira Dozhdikova
 
-```bash
-ng build
-```
+Email: dozhdikovailmira@gmail.com
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+GitHub: github.com/Ilmira83
