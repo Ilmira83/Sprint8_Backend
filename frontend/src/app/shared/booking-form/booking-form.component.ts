@@ -20,7 +20,7 @@ export class BookingFormComponent {
       type: new FormControl(''),
       days: new FormControl(null),
       price: new FormControl(null),
-      startDate: this.route.snapshot.queryParams['startDate']
+      startDate: new FormControl('')
     });
   }
   
@@ -33,8 +33,11 @@ export class BookingFormComponent {
   setValue(value:Booking){
     this.bookingForm.setValue(value);
   }
-  resetFrom(){
-    this.bookingForm.patchValue({ startDate: '' });
+  patchValue(value: Partial<Booking>){
+    this.bookingForm.patchValue(value)
+  }
+  resetForm(){
+    this.bookingForm.reset()
   }
 
 }

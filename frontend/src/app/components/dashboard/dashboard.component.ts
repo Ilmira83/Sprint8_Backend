@@ -43,7 +43,7 @@ export class DashboardComponent {
   }
 
   deleteBooking(id:number){
-   this.bookingsService.deleteBooking(id).subscribe(() =>
+   this.bookingsService.deleteBooking(id).subscribe( () =>
     this.bookingsService.bookingList.reload()
    );
    
